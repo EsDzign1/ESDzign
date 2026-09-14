@@ -20,7 +20,7 @@ import { OfficeProject } from '../types';
 function getYouTubeEmbedUrl(url: string): string {
   const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
   const videoId = match ? match[1] : '9nR1dXoJVRU';
-  return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&fs=0&rel=0&playsinline=1&modestbranding=1&iv_load_policy=3`;
+  return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&rel=0&playsinline=1&modestbranding=1&iv_load_policy=3`;
 }
 
 interface LocationDetailsProps {
@@ -234,10 +234,12 @@ export default function LocationDetailsScreen({
                 <iframe
                   src={getYouTubeEmbedUrl(project.videoUrl || "https://youtu.be/9nR1dXoJVRU?si=hjP9e-12rhD638AQ")}
                   title={`${project.name} Video Presentation`}
-                  className="w-full h-full border-0"
+                  className="w-full h-full border-0 pointer-events-none scale-[1.18] origin-center"
                   allow="autoplay; encrypted-media; picture-in-picture"
                   referrerPolicy="strict-origin-when-cross-origin"
                 />
+                {/* Transparent protective shield preventing any hover overlay, clickthrough, or YouTube watermark interaction */}
+                <div className="absolute inset-0 z-10 pointer-events-auto" />
               </div>
             </div>
 
