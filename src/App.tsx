@@ -16,7 +16,8 @@ import {
   X, 
   Building2, 
   ChevronRight,
-  Layers
+  Layers,
+  Video
 } from 'lucide-react';
 
 const CATEGORIES = [
@@ -215,9 +216,16 @@ export default function App() {
                       </a>
                     </div>
 
-                    {/* Index pill */}
-                    <div className="absolute top-3 right-3 z-10 px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm text-[10px] font-mono text-emerald-400 border border-white/10">
-                      #{String(idx + 1).padStart(2, '0')}
+                    {/* Index pill & Video indicator */}
+                    <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5">
+                      {project.videoUrl && (
+                        <span className="px-1.5 py-0.5 rounded bg-rose-600/90 text-white text-[9px] font-mono font-bold shadow flex items-center gap-1">
+                          <Video className="w-2.5 h-2.5" /> Video
+                        </span>
+                      )}
+                      <div className="px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm text-[10px] font-mono text-emerald-400 border border-white/10">
+                        #{String(idx + 1).padStart(2, '0')}
+                      </div>
                     </div>
 
                     {/* Bottom overlay inside photo */}
@@ -456,6 +464,11 @@ export default function App() {
                             <span className="text-xs font-semibold text-white truncate">
                               {project.name}
                             </span>
+                            {project.videoUrl && (
+                              <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 bg-rose-500/20 text-rose-300 rounded border border-rose-500/30 flex items-center gap-1">
+                                <Video className="w-2.5 h-2.5" /> Video
+                              </span>
+                            )}
                           </div>
                           <div className="text-[11px] text-slate-400 truncate">
                             {project.firm}

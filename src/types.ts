@@ -14,6 +14,7 @@ export interface OfficeProject {
   contactLink?: string;
   webLink: string;
   overview: string;
+  videoUrl?: string;
   esgContext: string;
   designHighlights: string[];
   materials: string[];

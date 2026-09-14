@@ -12,10 +12,17 @@ import {
   Award,
   Linkedin,
   Mail,
-  MessageCircle
+  MessageCircle,
+  Video
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { OfficeProject } from '../types';
+
+function getYouTubeEmbedUrl(url: string): string {
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+  const videoId = match ? match[1] : '9nR1dXoJVRU';
+  return `https://www.youtube.com/embed/${videoId}?fs=0&rel=0&autoplay=0`;
+}
 
 interface LocationDetailsProps {
   project: OfficeProject;
@@ -218,15 +225,36 @@ export default function LocationDetailsScreen({
               </div>
             </div>
 
-            {/* Overview & Spatial Strategy */}
+            {/* Overview & Spatial Strategy / Direct Video Player */}
             <div>
               <h3 className="text-xs uppercase font-mono font-bold tracking-wider text-slate-900 mb-2 flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5 text-slate-700" />
-                Spatial Architecture & Renovation Overview
+                {project.videoUrl || project.id === 'the-edge-amsterdam' ? (
+                  <>
+                    <Video className="w-3.5 h-3.5 text-rose-600" />
+                    <span>Spatial Architecture Video Feature</span>
+                  </>
+                ) : (
+                  <>
+                    <Building2 className="w-3.5 h-3.5 text-slate-700" />
+                    <span>Spatial Architecture & Renovation Overview</span>
+                  </>
+                )}
               </h3>
-              <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                {project.overview}
-              </p>
+              {project.videoUrl || project.id === 'the-edge-amsterdam' ? (
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-md border border-slate-200 bg-black">
+                  <iframe
+                    src={getYouTubeEmbedUrl(project.videoUrl || "https://youtu.be/9nR1dXoJVRU?si=hjP9e-12rhD638AQ")}
+                    title={`${project.name} Video Presentation`}
+                    className="w-full h-full border-0"
+                    allow="clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                  />
+                </div>
+              ) : (
+                <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                  {project.overview}
+                </p>
+              )}
             </div>
 
             {/* ESG & Sustainability Context */}

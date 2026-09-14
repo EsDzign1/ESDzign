@@ -16,6 +16,7 @@ export const OFFICE_PROJECTS: OfficeProject[] = [
     linkedInLink: "https://www.linkedin.com/company/ESGrp",
     contactLink: "https://wa.me/60126185866",
     webLink: "https://www.plparchitecture.com",
+    videoUrl: "https://youtu.be/9nR1dXoJVRU?si=hjP9e-12rhD638AQ",
     overview: "Regarded as one of the most sustainable and intelligent office buildings in the world, The Edge centers around a 15-story soaring glass atrium that acts as the thermal and social gravitational core of Deloitte's headquarters.",
     esgContext: "Achieved the highest BREEAM rating recorded (98.4%). Powered by 4,100 m² of rooftop solar arrays, aquifer thermal energy storage (ATES), rainwater flush systems, and Ethernet-powered LED smart sensory lighting.",
     designHighlights: [
